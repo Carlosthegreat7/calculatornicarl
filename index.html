@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale 1.0">
+
+    <style>
+	@font-face {
+    font-family: 'Digital7';
+    src: url('Digital7-rg1mL.ttf') format('truetype');
+	}
+
+        body {
+            font-family: 'Digital7', Arial, sans-serif;
+		    font-weight: normal;
+            background-color: #91DDF2;
+            background-image: url('C:\Users\user\Downloads\carl.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+   
+        #calculator {
+            background: url('/Downloads/carl.jpg') center/cover;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 9px;
+            width: 300px;
+            overflow: hidden;
+            padding: 22px;
+            color: white;
+        }
+
+
+        #display {
+            border: 2px solid #ccc;
+            background-color: #f2e6ff;
+            text-align: right;
+            padding: 17px;
+            font-size: 2em;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 13px;
+            color: black;
+        }
+        #buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 7px;
+        }
+
+        button {
+            border: 2px solid #ccc;
+            padding: 15px;
+            font-size: 2em;
+		font-family: 'Digital7', Arial, sans-serif;
+            cursor: pointer;
+            background-color: #f2e6ff;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffb3ff;
+        }
+
+
+    </style>
+    <title> Calculator Maangas </title>
+</head>
+<body>
+
+<div id="calculator">
+    <img src="carl.jpg" alt="pogi" width="300" height="300">
+    <div id="display">0</div>
+    <div id="buttons">
+	<button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button onclick="appendToDisplay('+')">+</button>
+
+	<button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button onclick="appendToDisplay('-')">-</button>
+
+	<button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button onclick="appendToDisplay('*')">*</button>
+
+        <button onclick="appendToDisplay('C')">C</button>
+        <button onclick="appendToDisplay('0')">0</button>
+        <button onclick="appendToDisplay('.')">.</button>
+        <button onclick="appendToDisplay('/')">/</button>
+        
+        <button onclick="appendToDisplay('=')" style="grid-column: span 3;">=</button>
+	<button onclick="appendToDisplay('%')">%</button>
+ 
+    </div>
+</div>
+
+<script>
+    let display = document.getElementById('display');
+
+    function appendToDisplay(value) {
+        if (value === '=') {
+            try {
+                display.textContent = eval(display.textContent);
+            } catch (error) {
+                display.textContent = 'Error';
+                return; // exit the function to prevent appending to 'Error'
+            }
+        } else if (value === 'C') {
+            display.textContent = '0';
+        } else {
+            if (display.textContent === 'Error') {
+                display.textContent = '0'; // Reset to '0' after an error
+            }
+
+            if (display.textContent === '0' && value !== '.') {
+                display.textContent = '';
+            }
+            display.textContent += value;      
+        }
+    }
+</script>
+
+
+</body>
+</html>
